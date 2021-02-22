@@ -1,16 +1,17 @@
-import {CHANGE_NAME} from '../actions/ProfileActions'
+import { CHANGE_NAME } from "../ActionTypes";
+
 const INITIAL_STATE = {
     current:["Harry","Another User"],
     numbers:[1233,1112,1256],
 };
 
-const profileReducer = (state = INITIAL_STATE, action) =>
+export const ProfileReducer = (state = INITIAL_STATE, action) =>
 {
     switch(action.type){
         case CHANGE_NAME:
             const newName = state.current
             newName[0] = "Harish"
-            return { ...state, current:newName}; 
+            return { ...state, current : newName}; 
 
         default:
             return state 
@@ -19,5 +20,3 @@ const profileReducer = (state = INITIAL_STATE, action) =>
     }
     
 }
-
-export default profileReducer

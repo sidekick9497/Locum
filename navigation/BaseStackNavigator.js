@@ -56,7 +56,7 @@ function BaseTabs(props) {
                 options={{
                     tabBarLabel: 'Profile',
                     tabBarIcon: ({ color, size }) => (
-                        <MaterialCommunityIcons name="profile" color={color} size={size} />
+                        <MaterialCommunityIcons name="account" color={color} size={size} />
                     ),
                 }} />
 
