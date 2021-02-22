@@ -1,13 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View,Button } from 'react-native';
+import BaseListView from '../components/core/BaseListView';
 
 export default function HomeScreen(props) {
   return (
     <View style={styles.container}>
-      <Text>Home screen here</Text>
-      <Button title="click here" onPress={()=>
-        props.navigation.navigate("profile")}/>
+      <BaseListView/>
     </View>
   );
 }
