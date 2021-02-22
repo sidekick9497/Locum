@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View,Button } from 'react-native';
-import BaseListView from '../components/core/BaseListView';
+// import BaseTabs from '../navigation/BaseStackNavigator';
 
-export default function HomeScreen(props) {
+const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <BaseListView/>
+      {/* <BaseTabs /> */}
     </View>
   );
 }
@@ -19,3 +19,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default HomeScreen;
