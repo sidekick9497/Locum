@@ -1,11 +1,11 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import HomeScreen from '../screens/HomeScreen'
-import ProfileScreen from '../screens/ProfileScreen'
+import HomeScreen from '../components/screens/HomeScreen'
+import ProfileScreen from '../components/screens/ProfileScreen'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ChatScreen from '../screens/ChatScreen'
-import HistoryScreen from '../screens/HistoryScreen'
+import ChatScreen from '../components/screens/ChatScreen'
+import HistoryScreen from '../components/screens/HistoryScreen'
 const Stack = createStackNavigator();
 
 function HomeStackNavigator(props) {
@@ -13,7 +13,7 @@ function HomeStackNavigator(props) {
         <Stack.Navigator>
             <Stack.Screen
                 name="Home"
-                component={HomeScreen}
+                children={() => <HomeScreen/>}
             />
 
             <Stack.Screen
@@ -24,14 +24,16 @@ function HomeStackNavigator(props) {
 }
 
 const Tab = createBottomTabNavigator();
+
 function BaseTabs(props) {
+
     return (
         <Tab.Navigator>
 
-            <Tab.Screen name="home" component={HomeStackNavigator}
+            <Tab.Screen name="home" children={() => <HomeScreen searchText = {props.state.searchText} searchTextEvent = {props.state.homeSearchText} />}
                 options={{
                     tabBarLabel: 'Home',
-                    tabBarIcon: ({ color, size }) => (
+                    tabBarIcon: ({ color , size }) => (
                         <MaterialCommunityIcons name="home" color={color} size={size} />
                     ),
                 }} />
@@ -63,4 +65,4 @@ function BaseTabs(props) {
         </Tab.Navigator>
     )
 }
-export default BaseTabs
+export default BaseTabs;
