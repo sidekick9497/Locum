@@ -1,9 +1,10 @@
 import React from 'react';
+import ProfilePic from './Avatar'
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 const ListItem = ({ item }) => (
      <TouchableOpacity style={styles.card} onPress={() => {this.clickEventListener(item)}}>
-              <Image style={styles.image} source={{uri: item.image}}/>
+              <ProfilePic  uri={item.image} online={item.online}/>
               <View style={styles.cardContent}>
                 <Text style={styles.name}>{item.name}</Text>
                 <Text style={styles.tags}>{item.tags}</Text>
