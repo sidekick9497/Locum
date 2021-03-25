@@ -1,5 +1,6 @@
 import React from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import ChatListItem from './ChatListItem';
 const DATA =[
         {id:1,  name: "Comunity",   image:"https://img.icons8.com/clouds/100/000000/groups.png",           lastText:"whatsUp", online:true},
@@ -10,14 +11,18 @@ const DATA =[
       ]; 
 
 
-const chatOnClick = ()=> {
+const chatOnClick = (navigation)=> {
   console.log("chat item clicked");
+  navigation.navigate('ChatViewScreen');
 
 }
-const  ChatListView= () => {
+const  ChatListView= (props) => {
+  const navigation = useNavigation();
+
   const renderItem = ({ item }) => (
-    <ChatListItem item={item} onClick={chatOnClick} />
+    <ChatListItem item={item} onClick={()=>chatOnClick(navigation)} />
   );
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
