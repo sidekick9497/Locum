@@ -2,8 +2,8 @@ import React from 'react';
 import ProfilePic from './Avatar'
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
-const ChatListItem = ({ item }) => (
-     <TouchableOpacity style={styles.card} onPress={() => {this.clickEventListener(item)}}>
+const ChatListItem = ({ item, onClick }) => (
+     <TouchableOpacity style={styles.card} onPress={onClick}>
               <ProfilePic  uri={item.image} online={item.online}/>
               <View style={styles.cardContent}>
                 <Text style={styles.name}>{item.name}</Text>

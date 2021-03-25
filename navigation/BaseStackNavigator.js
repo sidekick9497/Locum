@@ -6,6 +6,7 @@ import ProfileScreen from '../components/screens/ProfileScreen'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ChatScreen from '../components/screens/ChatScreen'
 import HistoryScreen from '../components/screens/HistoryScreen'
+import ChatViewScreen from '../components/screens/ChatViewScreen'
 const Stack = createStackNavigator();
 
 function HomeStackNavigator(props) {
@@ -23,6 +24,23 @@ function HomeStackNavigator(props) {
     )
 }
 
+function ChatScreenStackNavigator(props) {
+
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="ChatScreen"
+                children={() => <ChatScreen/>}
+            />
+
+            <Stack.Screen
+                name="ChatViewScreen"
+                component={ChatViewScreen} />
+        </Stack.Navigator>
+    )
+    
+}
+
 const Tab = createBottomTabNavigator();
 
 function BaseTabs(props) {
@@ -38,7 +56,7 @@ function BaseTabs(props) {
                     ),
                 }} />
 
-            <Tab.Screen name="chat" component={ChatScreen}
+            <Tab.Screen name="chat" component={ChatScreenStackNavigator}
                 options={{
                     tabBarLabel: 'Chat',
                     tabBarIcon: ({ color, size }) => (

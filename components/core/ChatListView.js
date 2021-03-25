@@ -10,10 +10,13 @@ const DATA =[
       ]; 
 
 
+const chatOnClick = ()=> {
+  console.log("chat item clicked");
 
+}
 const  ChatListView= () => {
   const renderItem = ({ item }) => (
-    <ChatListItem item={item} />
+    <ChatListItem item={item} onClick={chatOnClick} />
   );
   return (
     <SafeAreaView style={styles.container}>
