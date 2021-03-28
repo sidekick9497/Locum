@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 
 const ChatListItem = ({ item, onClick }) => (
      <TouchableOpacity style={styles.card} onPress={onClick}>
-              <ProfilePic  uri={item.image} online={item.online}/>
+              <ProfilePic  uri={item.image} online={item.online} size="large"/>
               <View style={styles.cardContent}>
                 <Text style={styles.name}>{item.name}</Text>
                 <Text style={styles.lastText}>{item.lastText}</Text>

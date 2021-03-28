@@ -19,7 +19,7 @@ function HomeStackNavigator(props) {
 
             <Stack.Screen
                 name="profile"
-                component={ProfileScreen} />
+                component={() => <ProfileScreen />} />
         </Stack.Navigator>
     )
 }
@@ -72,7 +72,7 @@ function BaseTabs(props) {
                     ),
                 }} />
                 
-            <Tab.Screen name="profile" component={ProfileScreen}
+            <Tab.Screen name="profile" component={() => <ProfileScreen profileDetails = {props.state.profileDetails}/>}
                 options={{
                     tabBarLabel: 'Profile',
                     tabBarIcon: ({ color, size }) => (

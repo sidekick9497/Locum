@@ -7,7 +7,7 @@ import Constants  from 'expo-constants'
 
 const mapStateToProps = state => {
     return {
-        profileReducer: state.profileReducer,
+        profileDetails: state.profileReducer,
         theme : state.themeReducer,
         searchText : state.searchText
     }

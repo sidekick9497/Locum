@@ -5,13 +5,13 @@ import {View} from 'react-native'
 const ProfilePic = (props)=> {
 	const status = props.online?"success":""
 	return (
-		<View>
+		<View style={props.style}>
 			<Avatar
 			rounded
-			source={
-				props.uri
-			}
-			size="large"
+			source={{
+				uri : props.uri
+			}}
+			size={props.size}
 			/>
 
 			<Badge
