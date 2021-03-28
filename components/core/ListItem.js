@@ -53,14 +53,14 @@ const styles = StyleSheet.create({
   name:{
     fontSize:22,
     flex:1,
-    alignSelf:'left',
+    // alignSelf:'left',
     color:"#778877",
     fontWeight:'bold'
   },
   tags:{
     fontSize:18,
     flex:1,
-    alignSelf:'center',
+    // alignSelf:'center',
     color:"#6666ff",
     fontWeight:'bold'
   },

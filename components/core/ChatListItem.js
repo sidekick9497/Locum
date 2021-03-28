@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize:22,
     flex:1,
-    alignSelf:'left',
+    // alignSelf:'left',
     color:"#778877",
     fontWeight:'bold'
   },
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   lastText: {
     fontSize:18,
     flex:1,
-    alignSelf:'left',
+    // alignSelf:'left',
     color:"grey"
   }
  
