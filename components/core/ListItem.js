@@ -1,6 +1,7 @@
 import React from 'react';
 import ProfilePic from './Avatar'
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {Badge} from 'react-native-elements'
 
 const ListItem = ({ item }) => (
      <TouchableOpacity style={styles.card} onPress={() => {this.clickEventListener(item)}}>
@@ -9,12 +10,22 @@ const ListItem = ({ item }) => (
                 <Text style={styles.name}>{item.name}</Text>
                 <Text style={styles.tags}>{item.tags}</Text>
                 <Text>{item.charges}</Text>
-                <Text>{item.rating}</Text>
-                <Text>{item.online}available</Text>
+                <Badge value={item.rating} status={getStatus(item.rating)} 
+                                textStyle={{ color: 'white', fontSize: 20, lineHeight: 30 }}
+                                 badgeStyle={{ width:50, height:35}}/>
               </View>
             </TouchableOpacity>
   );
 
+const getStatus = (rating)=>{
+	if(rating>4){
+		return "success"
+	}
+	else if(rating>2) {
+		return "warning"
+	}
+	return "error"
+}
 const styles = StyleSheet.create({
   contentList:{
     flex:1,
@@ -55,14 +66,16 @@ const styles = StyleSheet.create({
     flex:1,
     // alignSelf:'left',
     color:"#778877",
-    fontWeight:'bold'
+    fontWeight:'bold',
+    marginLeft:10
   },
   tags:{
     fontSize:18,
     flex:1,
     // alignSelf:'center',
-    color:"#6666ff",
-    fontWeight:'bold'
+    color:"grey",
+    fontWeight:'bold',
+    marginLeft:10
   },
   followButton: {
     marginTop:10,
