@@ -9,10 +9,12 @@ const ListItem = ({ item }) => (
               <View style={styles.cardContent}>
                 <Text style={styles.name}>{item.name}</Text>
                 <Text style={styles.tags}>{item.tags}</Text>
-                <Text>{item.charges}</Text>
-                <Badge value={item.rating} status={getStatus(item.rating)} 
-                                textStyle={{ color: 'white', fontSize: 20, lineHeight: 30 }}
-                                 badgeStyle={{ width:50, height:35}}/>
+                <View style={styles.contentList}>
+                  <Text style={styles.charges}> Rs. {item.charges} </Text>
+                  <Badge value={item.rating} status={getStatus(item.rating)} 
+                                  textStyle={{ color: 'white', fontSize: 20, lineHeight: 30 }}
+                                   badgeStyle={{ width:50, height:35}}/>
+                </View>
               </View>
             </TouchableOpacity>
   );
@@ -29,6 +31,7 @@ const getStatus = (rating)=>{
 const styles = StyleSheet.create({
   contentList:{
     flex:1,
+     flexDirection:'row'
   },
   cardContent: {
     marginLeft:20,
@@ -48,21 +51,28 @@ const styles = StyleSheet.create({
       width: 0,
       height: 6,
     },
+    borderBottomWidth :3,
+    borderBottomColor: 'grey',
+    backgroundColor: '#00BCD4',
     shadowOpacity: 0.37,
-    shadowRadius: 7.49,
-    elevation: 12,
-
     marginLeft: 20,
     marginRight: 20,
     marginTop:20,
     backgroundColor:"white",
     padding: 10,
-    flexDirection:'row',
-    borderRadius:30,
+    flexDirection:'row'
   },
 
   name:{
     fontSize:22,
+    flex:1,
+    // alignSelf:'left',
+    color:"#778877",
+    fontWeight:'bold',
+    marginLeft:10
+  },
+  charges: {
+      fontSize:22,
     flex:1,
     // alignSelf:'left',
     color:"#778877",
