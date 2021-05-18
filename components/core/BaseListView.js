@@ -10,19 +10,23 @@ const DATA =[
       ];
 
 
+const  BaseListView= (props) => {
 
-const  BaseListView= () => {
+  
   const renderItem = ({ item }) => (
-    <ListItem item={item} />
+    <ListItem item={item} onPress={props.listItemPress} />
   );
-  return (
+
+  return(
     <SafeAreaView style={styles.container}>
       <FlatList
         data={DATA}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
+     
     </SafeAreaView>
+
   );
 }
 

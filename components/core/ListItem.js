@@ -3,15 +3,15 @@ import ProfilePic from './Avatar'
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {Badge} from 'react-native-elements'
 
-const ListItem = ({ item }) => (
-     <TouchableOpacity style={styles.card} onPress={() => {this.clickEventListener(item)}}>
-              <ProfilePic  uri={item.image} online={item.online} size="large"/>
+const ListItem = (props) => (
+     <TouchableOpacity style={styles.card} onPress={() => {props.onPress()}}>
+              <ProfilePic  uri={props.item.image} online={props.item.online} size="large"/>
               <View style={styles.cardContent}>
-                <Text style={styles.name}>{item.name}</Text>
-                <Text style={styles.tags}>{item.tags}</Text>
+                <Text style={styles.name}>{props.item.name}</Text>
+                <Text style={styles.tags}>{props.item.tags}</Text>
                 <View style={styles.contentList}>
-                  <Text style={styles.charges}> Rs. {item.charges} </Text>
-                  <Badge value={item.rating} status={getStatus(item.rating)} 
+                  <Text style={styles.charges}> Rs. {props.item.charges} </Text>
+                  <Badge value={props.item.rating} status={getStatus(props.item.rating)} 
                                   textStyle={{ color: 'white', fontSize: 20, lineHeight: 30 }}
                                    badgeStyle={{ width:50, height:35}}/>
                 </View>
