@@ -12,7 +12,9 @@ headers: {
    scope: '*',
  },
 });
+
 export default client;
+
 function getUrl(config) {
 if (config.baseURL) {return config.url.replace(config.baseURL, '');}
 return config.url;

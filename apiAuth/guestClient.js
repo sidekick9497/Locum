@@ -22,6 +22,7 @@ client.interceptors.request.use(
  console.log(`%c ${config.method.toUpperCase()} - ${getUrl(config)}:`,'color: #0086b3; font-weight: bold',config,);
 return config;
 }, error => Promise.reject(error),);
+
 // Intercept all responses
 client.interceptors.response.use(
 async response => {console.log(`%c ${response.status} - ${getUrl(response.config)}:`,
