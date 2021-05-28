@@ -7,11 +7,17 @@ import {Appearance} from 'react-native-appearance'
 import BaseListView from '../core/BaseListView'
 import { Text } from 'react-native-elements';
 import {BottomSheet} from '../core/BottomSheet';
+import client from '../../apiAuth/guestClient';
 const HomeScreen = (props) => {
 
   const [isVisible, setIsVisible] = useState(false);
   const openBottomSheet = ()=> {
     setIsVisible(true);
+    client.get('/users/1')
+  .then(function (response) {
+    // handle success
+    console.log(response.data);
+  })
   }
   const closeBottomSheet = () => {
     setIsVisible(false);

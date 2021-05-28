@@ -8,14 +8,17 @@ const client = axios.create({
   data:{
    scope: '',
    id: 34,
+}
 });
 export default client;
+
 function getUrl(config) {
  if (config.baseURL) {
   return config.url.replace(config.baseURL, '');
  } 
   return config.url;
  }
+
 // Intercept all requests
 client.interceptors.request.use(
  config => {
