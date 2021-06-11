@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {useState} from 'react';
-import { StyleSheet, View,Button, ScrollView } from 'react-native';
+import { StyleSheet, View,Button, ScrollView, useColorScheme } from 'react-native';
 import Search from '../core/Search';
 import {Appearance} from 'react-native-appearance'
 import BaseListView from '../core/BaseListView'
@@ -41,7 +41,7 @@ const HomeScreen = (props) => {
           </View>
         </BottomSheet>
       <Text style={styles.center}>
-        sys theme : {Appearance.getColorScheme()}
+        sys theme : {useColorScheme()}
       </Text>
     </View>
   );

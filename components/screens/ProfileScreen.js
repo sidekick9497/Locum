@@ -1,75 +1,86 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { Image } from 'react-native-elements'
-import { useSelector, useDispatch } from 'react-redux';
+import { StyleSheet, Text, View, Button, Linking } from 'react-native';
+import { Image, Card } from 'react-native-elements';
+import { Icon } from 'react-native-eva-icons';
+import * as FontAwesome from 'react-native-fontawesome/FontAwesomeIcons';
 import ProfilePic from '../core/Avatar';
+
+const openDialScreen = (number) => {
+  if (Platform.OS === 'ios') {
+    dail = `telprompt:${number}`;
+  } else {
+    dail = `tel:${number}`;
+  }
+  Linking.openURL(dail);
+};
 
 const ProfileScreen = (props) => {
   return (
     <View style={styles.container}>
-      <BlurBackground profilePic={props.profileDetails.profilePicUri} />
-      <ProfilePic style={styles.profilePic}
-        rounded
-        uri={props.profileDetails.profilePicUri}
-        size="xlarge"
-      />
-      <ProfileName name={props.profileDetails.profileName} />
-      <Tags tags = {props.profileDetails.tags}/>
-      <StatsHeaders  />
-      <Stats stats = {props.profileDetails.stats} />
+      <Text>Search bar???</Text>
+      <DemoGraphics props={props} />
+      <ETA online={props.profileDetails.online}/>
     </View>
   );
 }
 
-const BlurBackground = (props) => {
+const DemoGraphics = ({ props }) => {
   return (
+    <Card containerStyle={styles.demoGraphicsCardOuterStyle} wrapperStyle={styles.demoGraphicsCardInnerStyle}>
+      <View style={styles.demoGraphicsContainer}>
+
+        <View >
+          <ProfilePic
+            hideBadge={true}
+            uri={props.profileDetails.profilePicUri}
+            size="large"
+          />
+        </View>
+
+        <View style={styles.column}>
+          <View>
+          <Text style={styles.title} >{props.profileDetails.profileName}</Text>
+          </View>
+          <View style={styles.row}>
+            <View style={styles.column} >
+              <Text style={styles.infoStyling}>
+                <Icon style={styles.icons} name="pin-outline" fill="#ffffff" width={15} height={15} />
+                {"  " + props.profileDetails.location}
+              </Text>
+              <Text style={styles.infoStyling} >
+                <Icon style={styles.icons} name="briefcase-outline" fill="#ffffff" width={15} height={15} />
+                {"  " + props.profileDetails.jobTitle}
+              </Text>
+            </View>
+
+            <View style={styles.column} >
+              <Text style={styles.infoStyling} onPress={() => openDialScreen(props.profileDetails.phoneNumber)}>
+                <Icon style={styles.icons} name="phone-outline" fill="#ffffff" width={15} height={15} />
+                {"  " + props.profileDetails.phoneNumber}
+              </Text>
+              <Text style={styles.infoStyling} onPress = {() => Linking.openURL(`mailto:${props.profileDetails.email}`)}>
+                <Icon style={styles.icons} name="email-outline" fill="#ffffff" width={15} height={15} />
+                {"  " + props.profileDetails.email}
+              </Text>
+            </View>
+          </View>
+        </View>
+
+      </View>
+    </Card>
+  )
+}
+
+const ETA = ({online}) => {
+  let status = '';
+  online ? status = 'online' : 'offline';
+  return(
+
     <View>
-      <Image style={styles.BlurBackground} source={{ uri: props.profilePic }} blurRadius={4} />
+    <Text style={styles.eta} >{status}</Text>
     </View>
-  )
-}
 
-const ProfileName = (props) => {
-  return (
-    <Text style={styles.ProfileName} >
-      {props.name}
-    </Text>
-  );
-}
-
-const Tags = (props) => {
-  let TagText = '';
-  props.tags.forEach( (element , index) => {
-    if (index !== props.tags.length-1) {
-      TagText = `${TagText}${element} || `
-    }
-    else{
-      TagText = `${TagText}${element}`
-    }
-  });
-  return (
-    <Text style={styles.tags}>
-      {TagText}
-    </Text>
-  )
-}
-
-const StatsHeaders = () => {
-  return (
-      <Text style={styles.statsHeaders}>
-        Hired   Worked   Active days
-      </Text>
-  )
-}
-
-const Stats = (props) => {
-  return (
-    <Text style={styles.stats}>
-      &nbsp; {props.stats.hired}
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {props.stats.worked}
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {props.stats.activeDays}
-    </Text>
   )
 }
 
@@ -77,46 +88,53 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  profilePic: {
-    position: 'absolute',
-    top: 100,
-    // left : -15
+  demoGraphicsCardOuterStyle: {
+    backgroundColor: "#22B573",
+    marginTop: 30,
+    margin: 0
   },
-  BlurBackground: {
-    // position : 'relative',
-    width: 'auto',
-    height: 150,
-    // backgroundColor : 'yellow'
+  demoGraphicsCardInnerStyle: {
+    backgroundColor: "#22B573",
+    margin: 10
   },
-  ProfileName: {
-    position: 'absolute',
-    top: 160,
-    left: 160,
-    fontFamily: 'Roboto',
-    fontWeight: 'bold',
-    fontSize: 23
-    // font-family: 'Roboto', sans-serif;
+  demoGraphicsContainer: {
+    flexDirection: "row"
   },
-  tags : {
-    position : 'absolute',
-    top : 195,
-    color : 'grey',
-    fontSize : 17,
-    left : 160
+  title: {
+    color: "#FFF",
+    fontFamily: "Roboto",
+    fontSize: 25,
+    fontWeight: "bold",
+    marginLeft: 15,
   },
-  statsHeaders : {
-    position : 'absolute',
-    top : 270,
-    color : '#888',
-    fontSize : 20,
-    fontWeight : 'bold',
-    left : 160
+  column: {
+    position: "relative",
+    top: 10,
+    flexDirection: "column"
   },
-  stats : {
-    position : 'absolute',
-    top : 300,
-    fontSize : 27,
-    left : 160
+  row: {
+    flexDirection: "row"
+  },
+  infoStyling: {
+    color: "#FFF",
+    fontFamily: "Roboto",
+    fontSize: 15,
+    marginLeft: 15,
+    paddingBottom : 10
+  },
+  // mailOverFlow : {
+  //   text
+  // },
+  icons: {
+    position: "relative",
+    top: 2
+  },
+  eta : {
+    marginLeft : 20,
+    fontSize : 20
+  },
+  lineHeight : {
+    // lineHeight : 1
   }
 });
 

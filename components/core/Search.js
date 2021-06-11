@@ -8,7 +8,7 @@ const Search = (props) => {
         <View style={styles.container}>
             <SearchBar 
             lightTheme={true}
-            platform={Platform.OS}
+            // platform={Platform.OS}
             onChangeText={(text) => props.searchTextEvent(text)}
             value={props.searchText.hasOwnProperty('current') ? props.searchText.current.HomeScreenSearch : '' }
             />

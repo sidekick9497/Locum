@@ -11,7 +11,7 @@ const BottomUserView = (props) => {
 		isOpen={props.isVisible}
 		openedPercentage={0.7}
 		onClose={props.closeBottomSheet}>
-          {// add user details here}
+          {/* // add user details here */}
           <View>
 	          <View style={styles.buttonContainer}>
 	          	<Button title="Close Bottom Sheet" onPress={props.closeBottomSheet} />
@@ -24,6 +24,7 @@ const BottomUserView = (props) => {
           </View>
 
           </BottomSheet>
-      }
+	)
+		  }
 
       export default HomeBottomScreen;

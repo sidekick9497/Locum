@@ -28,7 +28,7 @@ class Controller extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, paddingTop: Platform.OS === "ios" ? 0 : Constants.statusBarHeight }}>
+            <View style={{ flex: 1, paddingTop: "Platform.OS" === "ios" ? 0 : Constants.statusBarHeight }}>
                 <BaseTabs state={this.props}/>
                 {/* state distribution has to be changed */}
             </View>
