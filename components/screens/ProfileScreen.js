@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
    },
    column: {
     position: "relative",
-    top: 10,
+    top: 15,
     flexDirection: "column",
 
 
