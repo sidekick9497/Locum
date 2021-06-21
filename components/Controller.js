@@ -9,7 +9,8 @@ const mapStateToProps = state => {
     return {
         profileDetails: state.profileReducer,
         theme : state.themeReducer,
-        searchText : state.searchText
+        searchText : state.searchText,
+        homeScreenData:state.homeScreenReducer
     }
 };
 

@@ -1,30 +1,89 @@
 import React from 'react';
+import { StyleSheet, View,Button, ScrollView, useColorScheme } from 'react-native';
 import {ListItem, Text} from 'react-native-elements'
 import ProfilePic from './Avatar'
 import {useState} from 'react'
 import {BottomSheet} from '../core/BottomSheet';
 const BottomUserView = (props) => {
-
-
 	return(
 		<BottomSheet
-		isOpen={props.isVisible}
+		isOpen={props.isOpen}
 		openedPercentage={0.7}
-		onClose={props.closeBottomSheet}>
+		onClose={props.onClose}>
           {/* // add user details here */}
           <View>
 	          <View style={styles.buttonContainer}>
-	          	<Button title="Close Bottom Sheet" onPress={props.closeBottomSheet} />
+						<Button title="Close Bottom Sheet" onPress={props.closeBottomSheet} />
 	          </View>
-	          <View>
-	           	<ProfilePic  uri={props.item.image} online={props.item.online} size="large"/>
-	           	<Text style={styles.name}>{props.item.name}</Text>
-	           	<Text style={styles.charges}> Rs. {props.item.charges} </Text>
-	          </View>
-          </View>
-
+	          <UserInfoView item={props.item}/>
+						</View>
           </BottomSheet>
 	)
 		  }
 
-      export default HomeBottomScreen;
+const UserInfoView = (props) => {
+	return(
+		<View style={{marginTop:18}}>
+		<View style={{flexDirection:"row"}}>
+		<View>
+		<ProfilePic  uri={props.item.image} online={props.item.online} size="large"/>
+		</View>
+		<View style={{flex:2,marginLeft:20}}>
+		<Text style={styles.name}>{props.item.name}</Text>
+			<Text style={styles.charges}> Rs. {props.item.charges} </Text>
+		</View>
+		</View>
+		<View style={styles.cardContent}>
+
+			<View style={styles.contentList}>
+			<Text style={styles.awayText}>25 mins away</Text>
+			</View>
+		</View>
+		</View>
+
+		)
+}
+
+const styles = StyleSheet.create({
+  contentList:{
+		flex:1,
+     flexDirection:'row'
+  },
+  cardContent: {
+    marginLeft:20,
+    marginTop:10
+  },
+  image:{
+    width:90,
+    height:90,
+    borderRadius:45,
+    borderWidth:2,
+    borderColor:"#ebf0f7"
+  },
+  name:{
+    fontSize:22,
+    flex:1,
+    // alignSelf:'left',
+    color:"#778877",
+    fontWeight:'bold',
+  },
+  charges: {
+      fontSize:22,
+    flex:1,
+    // alignSelf:'left',
+    color:"black",
+    fontWeight:'bold',
+  },
+  tags:{
+    fontSize:18,
+    flex:1,
+    // alignSelf:'center',
+    color:"grey",
+    fontWeight:'bold',
+    marginLeft:10
+  },
+	awayText: {
+		fontStyle:"italic"
+	}
+});
+export default BottomUserView;
