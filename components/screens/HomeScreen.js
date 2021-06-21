@@ -33,6 +33,7 @@ const HomeScreen = (props) => {
   }
   const closeBottomSheet = () => {
     setIsVisible(false);
+    console.log("hidding BottomSheet")
   }
 
   return (

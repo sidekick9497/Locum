@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View,Button, ScrollView, useColorScheme } from 'react-native';
-import {ListItem, Text} from 'react-native-elements'
+import { StyleSheet, View, ScrollView, useColorScheme,TouchableHighlight } from 'react-native';
+import {ListItem, Text,Button} from 'react-native-elements'
 import ProfilePic from './Avatar'
 import {useState} from 'react'
 import {BottomSheet} from '../core/BottomSheet';
+import { AntDesign } from '@expo/vector-icons';
 const BottomUserView = (props) => {
 	return(
 		<BottomSheet
@@ -12,8 +13,18 @@ const BottomUserView = (props) => {
 		onClose={props.onClose}>
           {/* // add user details here */}
           <View>
-	          <View style={styles.buttonContainer}>
-						<Button title="Close Bottom Sheet" onPress={props.closeBottomSheet} />
+	          <View >
+						<Button
+						containerStyle={styles.buttonContainer}
+							onPress={props.onClose}
+					  icon={
+					    		<AntDesign name="closecircle" size={24} color="black"/>
+					  }
+					   closecircle
+						  type="clear"
+
+					/>
+
 	          </View>
 	          <UserInfoView item={props.item}/>
 						</View>
@@ -29,12 +40,14 @@ const UserInfoView = (props) => {
 		<ProfilePic  uri={props.item.image} online={props.item.online} size="large"/>
 		</View>
 		<View style={{flex:2,marginLeft:20}}>
-		<Text style={styles.name}>{props.item.name}</Text>
+			<Text style={styles.name}>{props.item.name}</Text>
+			<View style={{flexDirection:"row"}}>
 			<Text style={styles.charges}> Rs. {props.item.charges} </Text>
+			<Text style={styles.charges}>4.4</Text>
+			</View>
 		</View>
 		</View>
 		<View style={styles.cardContent}>
-
 			<View style={styles.contentList}>
 			<Text style={styles.awayText}>25 mins away</Text>
 			</View>
@@ -53,6 +66,12 @@ const styles = StyleSheet.create({
     marginLeft:20,
     marginTop:10
   },
+	buttonContainer:{
+    position: 'absolute',
+		top:8,
+    right: 8
+},
+
   image:{
     width:90,
     height:90,
