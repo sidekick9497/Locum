@@ -22,7 +22,7 @@ const  BaseListView= (props) => {
       <FlatList
         data={props.DATA}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id+""}
       />
 
     </SafeAreaView>

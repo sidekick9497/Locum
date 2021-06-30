@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import {useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useState,useEffect} from 'react';
+import {useSelector,useDispatch} from 'react-redux';
 import { StyleSheet, View,Button, ScrollView, useColorScheme } from 'react-native';
 import Search from '../core/Search';
 import {Appearance} from 'react-native-appearance'
@@ -9,6 +9,10 @@ import BaseListView from '../core/BaseListView'
 import { Text } from 'react-native-elements';
 import {BottomSheet} from '../core/BottomSheet';
 import BottomUserView from '../core/BottomUserView'
+import {HomeScreenActions} from '../../redux/HomeScreenActions'
+import ContentLoader, {  List } from 'react-content-loader';
+import HomeLoader from '../loaders/HomeLoader';
+
 
 import client from '../../apiAuth/guestClient';
 // const DATA =[
@@ -20,44 +24,48 @@ import client from '../../apiAuth/guestClient';
 //       ];
 const HomeScreen = (props) => {
   const DATA = useSelector(state=>state.homeScreen.DATA)
-  console.log(DATA)
-
+  //console.log(DATA)
+  const dispatch = useDispatch()
+  useEffect(() => {
+  // this is only executed once
+  const data = dispatch(HomeScreenActions())
+}, [dispatch])
   const [isVisible, setIsVisible] = useState(false);
   const openBottomSheet = ()=> {
     setIsVisible(true);
-    client.get('/users/1')
-  .then(function (response) {
-    // handle success
-    console.log(response.data);
-  })
   }
+
   const closeBottomSheet = () => {
     setIsVisible(false);
     console.log("hidding BottomSheet")
   }
-
-  return (
-    <View style={styles.container}>
-      <ScrollView>
-      <Search searchText = {props.searchText} searchTextEvent = {props.searchTextEvent} />
-      <Text h1>Recent</Text>
-      <BaseListView listItemPress={openBottomSheet} DATA={DATA}/>
-       <Text h1>Suggestions</Text>
-      <BaseListView/>
-      </ScrollView>
-       <BottomUserView
-          item={DATA[0]}
-          isOpen={isVisible}
-          openedPercentage={0.7}
-          onClose={closeBottomSheet}>
-        </BottomUserView>
-      <Text style={styles.center}>
-        sys theme : {useColorScheme()}
-      </Text>
-    </View>
+    const isLoading =useSelector(state=>state.homeScreen.isLoading)
+    console.log(isLoading  + "from homeScreen")
+  return(
+    isLoading ? <HomeLoader/>:<HomeScreenView {...props} data={DATA} openBottomSheet={openBottomSheet} closeBottomSheet={closeBottomSheet} isVisible={isVisible}/>
   );
 }
 
+const HomeScreenView = (props) => {
+  return(<View style={styles.container}>
+    <ScrollView>
+    <Search searchText = {props.searchText} searchTextEvent = {props.searchTextEvent} />
+    <Text h1>Recent</Text>
+    <BaseListView listItemPress={props.openBottomSheet} DATA={props.data}/>
+     <Text h1>Suggestions</Text>
+    <BaseListView/>
+    </ScrollView>
+     <BottomUserView
+        item={props.data[0]}
+        isOpen={props.isVisible}
+        openedPercentage={0.7}
+        onClose={props.closeBottomSheet}>
+      </BottomUserView>
+    <Text >
+      sys theme : {useColorScheme()}
+    </Text>
+  </View>)
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,

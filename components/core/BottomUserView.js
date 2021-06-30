@@ -21,7 +21,7 @@ const BottomUserView = (props) => {
 					    		<AntDesign name="closecircle" size={24} color="black"/>
 					  }
 					   closecircle
-						  type="clear"
+						  
 
 					/>
 
@@ -68,6 +68,8 @@ const styles = StyleSheet.create({
   },
 	buttonContainer:{
     position: 'absolute',
+		height:56,
+		width:72,
 		top:8,
     right: 8
 },
