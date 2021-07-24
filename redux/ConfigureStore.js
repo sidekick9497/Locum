@@ -6,6 +6,7 @@ import { profileReducer } from "./reducers/ProfileReducer";
 import { themeReducer } from './reducers/ThemeReducer';
 import { searchReducer } from './reducers/SearchReducer';
 import {homeScreenReducer} from './reducers/HomeScreenReducer'
+import {selectedUserReducer} from './reducers/SelectedUserReducer'
 
 export const configureStore = () => {
     const store = createStore(
@@ -13,7 +14,8 @@ export const configureStore = () => {
             profileReducer : profileReducer,
             themeReducer : themeReducer,
             searchText : searchReducer,
-            homeScreen:homeScreenReducer
+            homeScreen:homeScreenReducer,
+            selectedUser : selectedUserReducer
         }),
         // applyMiddleware(thunk , logger)
         applyMiddleware(thunk)

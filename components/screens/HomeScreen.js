@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {useState,useEffect} from 'react';
@@ -33,6 +34,7 @@ const HomeScreen = (props) => {
   const [isVisible, setIsVisible] = useState(false);
   const openBottomSheet = ()=> {
     setIsVisible(true);
+   // dispatch(loadselectedUser) // on clicking we will load selected user data to state.
   }
 
   const closeBottomSheet = () => {
@@ -55,6 +57,7 @@ const HomeScreenView = (props) => {
      <Text h1>Suggestions</Text>
     <BaseListView/>
     </ScrollView>
+    {/* we need to pass the dynamic selected data in next */}
      <BottomUserView
         item={props.data[0]}
         isOpen={props.isVisible}
