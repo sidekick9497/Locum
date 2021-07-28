@@ -11,12 +11,17 @@ const INITIAL_STATE = {
 
 export const selectedUserReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case ActionTypes.SELECTED_USER_HISTORY:
-            console.log(action.payload)
-            return { ...state, contractHistory: action.payload };
+        case ActionTypes.SELECTED_USER:
+            return { ...state, demographics: action.payload }
         case ActionTypes.SELECTED_USER_TOGGLE_LOADING:
             console.log("loading is " + state.isLoading)
             return { ...state, isLoading: !state.isLoading }
+        case ActionTypes.SELECTED_USER_HISTORY:
+            console.log(action.payload)
+            return { ...state, contractHistory: action.payload };
+        case ActionTypes.SELECTED_USER_HISTORY_LOADING:
+            return { ...state, isHistoryLoading: !state.isHistoryLoading }
+
         default:
             console.log("Here we are")
             return state;
