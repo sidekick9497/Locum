@@ -25,7 +25,7 @@ export const homeScreenReducer = (state = INITIAL_STATE, action) =>
           console.log("loading is " + state.isLoading)
           return {...state, isLoading:!state.isLoading}
         default:
-            console.log("Here we are")
+            console.log("Not a homeScreenReducer action")
             return state;
     }
 

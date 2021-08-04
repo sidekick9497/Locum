@@ -11,6 +11,7 @@ import { Text } from 'react-native-elements';
 import {BottomSheet} from '../core/BottomSheet';
 import BottomUserView from '../core/BottomUserView'
 import {HomeScreenActions} from '../../redux/HomeScreenActions'
+import {SelectedUserActions} from '../../redux/reducers/actions/SelectedUserActions'
 import ContentLoader, {  List } from 'react-content-loader';
 import HomeLoader from '../loaders/HomeLoader';
 
@@ -29,10 +30,11 @@ const HomeScreen = (props) => {
   const dispatch = useDispatch()
   useEffect(() => {
   // this is only executed once
-  const data = dispatch(HomeScreenActions())
+  dispatch(HomeScreenActions())
 }, [dispatch])
   const [isVisible, setIsVisible] = useState(false);
   const openBottomSheet = ()=> {
+    dispatch(SelectedUserActions())
     setIsVisible(true);
    // dispatch(loadselectedUser) // on clicking we will load selected user data to state.
   }

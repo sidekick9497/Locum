@@ -17,13 +17,12 @@ export const selectedUserReducer = (state = INITIAL_STATE, action) => {
             console.log("loading is " + state.isLoading)
             return { ...state, isLoading: !state.isLoading }
         case ActionTypes.SELECTED_USER_HISTORY:
-            console.log(action.payload)
-            return { ...state, contractHistory: action.payload };
+            return { ...state,contractHistory:action.payload};
         case ActionTypes.SELECTED_USER_HISTORY_LOADING:
             return { ...state, isHistoryLoading: !state.isHistoryLoading }
 
         default:
-            console.log("Here we are")
+            console.log("you triggered a actions that is not configured")
             return state;
     }
 }

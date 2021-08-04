@@ -23,7 +23,7 @@ export const toggleHomeScreenLoading = () => ({
   payload:null
 })
 export const setSelectedUser = (data)=>({
-  type:ActionTypes.SELECTED_USER_HISTORY,
+  type:ActionTypes.SELECTED_USER,
   payload:data
   })
 export const toggleSelectedUserLoading = ()=>({
@@ -34,3 +34,8 @@ export const toggleSelectedUserHistoryLoading = () =>({
   type:ActionTypes.SELECTED_USER_HISTORY_LOADING,
   payload:null
 })
+
+export const setSelectedUserHistory = (data)=>({
+  type:ActionTypes.SELECTED_USER_HISTORY,
+  payload:data
+  })

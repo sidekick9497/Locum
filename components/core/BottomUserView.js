@@ -14,6 +14,7 @@ import { BottomSheet } from "../core/BottomSheet";
 import { AntDesign } from "@expo/vector-icons";
 const BottomUserView = (props) => {
   const selectedUserData = useSelector(state=>state.selectedUser)
+  console.log("data of selectedUserData")
   console.log(selectedUserData)
   return (
     <BottomSheet

@@ -32,8 +32,7 @@
       "charges": "500",
       "image": "https://img.icons8.com/color/100/000000/real-estate.png",
       "online": true
-    },
-    "ETA": "15 minutes"
+    }
   }
 ],
 "contractHistory": [
@@ -41,7 +40,7 @@
     "id": 1,
     "history":[
       {
-        "name": "john long",
+        "name": "john long db",
         "charged": "1200",
         "date": "12/31/2021"
       },
